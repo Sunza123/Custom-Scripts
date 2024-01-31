@@ -25,7 +25,6 @@ get-aduser -filter 'Name -like $user'
 $confirmation = read-host "Is this the correct staff member? [Y/N]"
 
 If ($confirmation -eq 'y'){
-    #$user = get-aduser -filter 'Name -like $user'
     Disable-ADAccount -Identity $user
     Set-ADAccountPassword -identity $user -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass1 -Force)
     Start-Sleep -seconds 1
@@ -44,7 +43,6 @@ while ($confirmation -ne "y"){
         }
 
     If ($confirmation -eq "y"){
-    #$user = get-aduser -filter 'Name -like $user'
     Disable-ADAccount -Identity $user
     Set-ADAccountPassword -identity $user -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass1 -Force)
     Start-Sleep -seconds 1

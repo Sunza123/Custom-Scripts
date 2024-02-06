@@ -33,7 +33,7 @@ If ($confirmation -eq 'y') {
   Set-ADAccountPassword -identity $ADacct -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass1 -Force)
   Start-Sleep -seconds 1
   Set-ADAccountPassword -identity $ADacct -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass2 -Force)
-  Set-ADUser -Identity $ADacct -Description "DISABLE - Compromised, $timestamp"
+  Set-ADUser -Identity $ADacct -Description "DISABLED - Compromised, $timestamp"
   get-inboxrule -Mailbox $user | remove-inboxrule -force
   Write-Host "User's password has been reset and inbox rules have been removed." -ForegroundColor Green
   Start-Sleep -seconds 3
@@ -53,7 +53,7 @@ while ($confirmation -ne "y") {
     Set-ADAccountPassword -identity $ADacct -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass1 -Force)
     Start-Sleep -seconds 1
     Set-ADAccountPassword -identity $ADacct -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass2 -Force)
-    Set-ADUser -Identity $ADacct -Description "DISABLE - Compromised, $timestamp"
+    Set-ADUser -Identity $ADacct -Description "DISABLED - Compromised, $timestamp"
     get-inboxrule -Mailbox $user | remove-inboxrule -force
     Write-Host "User's password has been reset and inbox rules have been removed." -ForegroundColor Green
     Start-Sleep -seconds 3

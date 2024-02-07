@@ -29,7 +29,7 @@ If ($confirmation -eq 'y'){
     Set-ADAccountPassword -identity $user -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass1 -Force)
     Start-Sleep -seconds 1
     Set-ADAccountPassword -identity $user -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass2 -Force)
-    Set-ADUser -Identity $user -Description "DISABLED - Admin Leave, $timestamp"
+    Set-ADUser -Identity $user -Description "DISABLED by $env:username - Admin Leave, $timestamp"
     Write-Host "User's password has been reset and account disabled." -ForegroundColor Green
     Start-Sleep -seconds 3
     exit
@@ -47,7 +47,7 @@ while ($confirmation -ne "y"){
     Set-ADAccountPassword -identity $user -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass1 -Force)
     Start-Sleep -seconds 1
     Set-ADAccountPassword -identity $user -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass2 -Force)
-    Set-ADUser -Identity $user -Description "DISABLED - Admin Leave, $timestamp"
+    Set-ADUser -Identity $user -Description "DISABLED by $env:username - Admin Leave, $timestamp"
     Write-Host "User's password has been reset and account disabled." -ForegroundColor Green
     Start-Sleep -seconds 3
     exit

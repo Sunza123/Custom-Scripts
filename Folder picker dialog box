@@ -1,0 +1,7 @@
+#This template creates a pop up box that asks the user to select a folder to save files.
+Add-Type -AssemblyName System.Windows.Forms
+$FolderBrowser = New-Object System.Windows.Forms.FolderBrowserDialog
+$FolderBrowser.Description = 'Select where you would like to save the results.'
+$result = $FolderBrowser.ShowDialog((New-Object System.Windows.Forms.Form -Property @{TopMost = $true }))
+###Below this is for testing only###
+#New-Item -Path $FolderBrowser.SelectedPath -Name "testfile1.txt" -ItemType "file" -Value "This is a text string."

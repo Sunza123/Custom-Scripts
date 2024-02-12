@@ -21,15 +21,15 @@ $newpass1 = get-randompassword
 $newpass2 = get-randompassword
 $TimeStamp = ((get-date).toshortdatestring())
 $user = read-host -prompt "Please enter the staff member's name"
-get-aduser -filter 'Name -like $user'
+$ADUser = get-aduser -filter 'Name -like $user'
 $confirmation = read-host "Is this the correct staff member? [Y/N]"
 
 If ($confirmation -eq 'y'){
-    Disable-ADAccount -Identity $user
-    Set-ADAccountPassword -identity $user -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass1 -Force)
+    Disable-ADAccount -Identity $ADUser
+    Set-ADAccountPassword -identity $ADUser -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass1 -Force)
     Start-Sleep -seconds 1
-    Set-ADAccountPassword -identity $user -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass2 -Force)
-    Set-ADUser -Identity $user -Description "DISABLED by $env:username - Admin Leave, $timestamp"
+    Set-ADAccountPassword -identity $ADUser -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass2 -Force)
+    Set-ADUser -Identity $ADUser -Description "DISABLED by $env:username - Admin Leave, $timestamp"
     Write-Host "User's password has been reset and account disabled." -ForegroundColor Green
     Start-Sleep -seconds 3
     exit
@@ -37,17 +37,17 @@ If ($confirmation -eq 'y'){
 while ($confirmation -ne "y"){
 
         If ($confirmation -eq "n") {
-        $user = read-host -prompt "Please enter the staff member's name"
-        get-aduser -filter 'Name -like $user'
-        $confirmation = read-host "Is this the correct user? [Y/N]"
+        $ADUser = read-host -prompt "Please enter the staff member's name"
+        get-aduser -filter 'Name -like $ADUser'
+        $confirmation = read-host "Is this the correct AD$ADUser? [Y/N]"
         }
 
     If ($confirmation -eq "y"){
-    Disable-ADAccount -Identity $user
-    Set-ADAccountPassword -identity $user -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass1 -Force)
+    Disable-ADAccount -Identity $ADUser
+    Set-ADAccountPassword -identity $ADUser -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass1 -Force)
     Start-Sleep -seconds 1
-    Set-ADAccountPassword -identity $user -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass2 -Force)
-    Set-ADUser -Identity $user -Description "DISABLED by $env:username - Admin Leave, $timestamp"
+    Set-ADAccountPassword -identity $ADUser -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newpass2 -Force)
+    Set-ADUser -Identity $ADUser -Description "DISABLED by $env:username - Admin Leave, $timestamp"
     Write-Host "User's password has been reset and account disabled." -ForegroundColor Green
     Start-Sleep -seconds 3
     exit
@@ -55,6 +55,6 @@ while ($confirmation -ne "y"){
 
  Write-Host "Invalid input, please try again." -ForegroundColor Red
  $user = read-host -prompt "Please enter the staff member's name"
- get-aduser -filter 'Name -like $user'
- $confirmation = read-host "Is this the correct user? [Y/N]"
+ $ADUser = get-aduser -filter 'Name -like $user'
+ $confirmation = read-host "Is this the correct AD$ADUser? [Y/N]"
 }

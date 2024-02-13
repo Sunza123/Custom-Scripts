@@ -60,4 +60,5 @@ while ($confirmation -ne "y") {
     $ADUser = get-aduser -filter 'Name -like $user'
     $confirmation = read-host "Is this the correct staff member? [Y/N]"
 }
-}while ($completed -ne "y")
+}while ($completed -ne "n")
+Exit

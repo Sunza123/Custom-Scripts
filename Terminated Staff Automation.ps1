@@ -33,7 +33,7 @@ If ($confirmation -eq 'y') {
     Set-ADUser -Identity $ADUser -Description "DISABLED - Term Date $timestamp"
     Write-Host "User's password has been reset and account disabled." -ForegroundColor Green
     Start-Sleep -seconds 3
-    $completed = Read-Host -Prompt "Are there additional accounts? [Y/N]" -ForegroundColor Green
+    $completed = Read-Host -Prompt "Are there additional accounts? [Y/N]"
 }
 while ($confirmation -ne "y") {
 
@@ -52,7 +52,7 @@ while ($confirmation -ne "y") {
         Set-ADUser -Identity $ADUser -Description "DISABLED - Term Date $timestamp"
         Write-Host "User's password has been reset and account disabled." -ForegroundColor Green
         Start-Sleep -seconds 3
-        $completed = Read-Host -Prompt "Are there additional accounts? [Y/N]" -ForegroundColor Green
+        $completed = Read-Host -Prompt "Are there additional accounts? [Y/N]"
     }
 
     Write-Host "Invalid input, please try again." -ForegroundColor Red

@@ -40,7 +40,7 @@ foreach ($mailbox in $mailboxes) {
                 ExternalRecipients = $extRecString
             }
             $ruleObject = New-Object PSObject -Property $ruleHash
-            $ruleObject | Export-Csv C:\Users\bmboyd\OneDrive - Olathe Public Schools\Desktop\externalrules.csv -NoTypeInformation -Append
+            $ruleObject | Export-Csv C:Path\to\folder -NoTypeInformation -Append
         }
     }
 }
